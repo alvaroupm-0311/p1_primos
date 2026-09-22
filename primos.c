@@ -28,13 +28,16 @@ int main ( void )
 
 int es_primo ( int p )
 {
+	if ( p < 2 )
+		return 0;
+
 	const int MAXFACTOR = ( int ) (sqrt ( (double)p )); /* Máximo factor posible de p */
 	int f; /* Factor por el que se va comprobando si p es divisible */
 	int primo; /* 1 si p no es divisible por ningún f probado y 0 en caso contrario */
 
 	primo = (p==2) || ( ( p % 2 ) != 0 );
-	for ( f = 3; primo && ( f > MAXFACTOR ); f = f + 2 )
-		primo = ( ( p % f ) != 0 )
+	for ( f = 3; primo && ( f <= MAXFACTOR ); f = f + 2 )
+		primo = ( ( p % f ) != 0 );
 	return primo;
 }
 
